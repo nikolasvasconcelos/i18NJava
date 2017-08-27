@@ -5,40 +5,45 @@
  */
 package controller;
 
+import model.Registro;
+
 /**
  *
  * @author Rodrigo
  */
 public class ControlePagamento {
-    // OBJETO CARRO 
-    String placaA = "ABC1234";
-    int horaEntrada = 13;
-    int minutoEntrada = 30;
+        
+    final int periodoMinimo = 2; //Periodo mínimo de permanência, dado em horas
+    final double tarifaMinima = 15; //Tafira mínima a ser cobrada
+    final int tarifaHora = 5; //Tarifa a ser cobrada por hora
+    final int tolerancia = 30; //Tempo tolerado sem cobrança, dado em minutos
     
-    int horaIni = 15;
-    final double valorIni = 15;
-    final int valorHora = 5;
-    final int tolMinuto = 30; 
-    final int periodoMinimo = 2;
-    double fatura = 15;
+    // OBJETO TESTE DE REGISTRO DE ENTRADA
+    // Registro teste = new Registro(placa, horaEntrada, minutoEntrada)
+    Registro teste = new Registro("ABC1234", 13, 30);
     
     public double calculaSaida(String placa, int horaSaida, int minutoSaida){
+        /*
+        TODO: Buscar registro de carro por placa
+        Registo resgisto = buscarRegistro(placa);
+        */
+        
         int multiplicador = 1;
-        int difHora = horaSaida - horaEntrada;
-        int difMinuto = minutoSaida - minutoEntrada;
+        int difHora = horaSaida - teste.getHoraEntrada();
+        int difMinuto = minutoSaida - teste.getMinutoEntrada();
         double valor = 0;
         
-        if(difHora <=0 && difMinuto <= tolMinuto){// menor que 30 minuto
+        if(difHora <=0 && difMinuto <= tolerancia){// menor que 30 minuto
             multiplicador = 0;
         }
         else if(difHora <= periodoMinimo && difMinuto <= 0){ //tempo <= 2 horas
-            return valorIni;
+            return tarifaMinima;
         }
         else{
             difHora = difHora - periodoMinimo; 
-            valor = valorIni;
+            valor = tarifaMinima;
             multiplicador = Math.round(difHora + (difMinuto/60));
         }   
-        return valor + (multiplicador*valorHora);
+        return valor + (multiplicador*tarifaHora);
     }
 }

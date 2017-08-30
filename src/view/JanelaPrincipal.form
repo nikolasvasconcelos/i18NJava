@@ -26,19 +26,63 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="pnEntrada" min="-2" pref="154" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="pnSaida" min="-2" pref="154" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="pnCobranca" min="-2" pref="154" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-              <Component id="lbParkingControl" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="pnGanhos" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="pnEntrada" min="-2" pref="154" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="pnSaida" min="-2" pref="154" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                      <Component id="pnCobranca" min="-2" pref="154" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="lbPeriodoInicial" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                      <Component id="spPeriodoInicial" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="lbValorInicial" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="pnGanhos" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+                              <Component id="lbParkingControl" min="-2" pref="248" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="lbGanhos" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txGanhos" min="-2" pref="65" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="lbTolerancia" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="spTolerancia" min="-2" pref="49" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="lbPeriodoAdicional" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="spPeriodoAdicional" min="-2" pref="50" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="lbValorAdicional" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="txfValorInicial" alignment="0" min="-2" pref="78" max="-2" attributes="0"/>
+                          <Component id="txfValorAdicional" min="-2" pref="78" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -47,16 +91,38 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lbParkingControl" min="-2" max="-2" attributes="0"/>
                   <Component id="pnGanhos" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="lbParkingControl" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="pnSaida" min="-2" pref="154" max="-2" attributes="0"/>
-                  <Component id="pnEntrada" min="-2" pref="154" max="-2" attributes="0"/>
-                  <Component id="pnCobranca" min="-2" pref="154" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="spPeriodoInicial" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbPeriodoInicial" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txfValorInicial" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbValorInicial" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txGanhos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbGanhos" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="spTolerancia" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbPeriodoAdicional" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbTolerancia" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="lbValorAdicional" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txfValorAdicional" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="spPeriodoAdicional" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="pnSaida" alignment="1" min="-2" pref="154" max="-2" attributes="0"/>
+                  <Component id="pnEntrada" alignment="1" min="-2" pref="154" max="-2" attributes="0"/>
+                  <Component id="pnCobranca" alignment="1" min="-2" pref="154" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -407,7 +473,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btCobrarSaida">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cobrar Sa&#xed;da"/>
+            <Property name="text" type="java.lang.String" value="Registrar Cobran&#xe7;a"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCobrarSaidaActionPerformed"/>
@@ -503,23 +569,96 @@
     <Container class="javax.swing.JPanel" name="pnGanhos">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JLabel" name="lbGanhos">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ganhos:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txGanhos">
-          <Properties>
-            <Property name="columns" type="int" value="10"/>
-            <Property name="horizontalAlignment" type="int" value="11"/>
-            <Property name="text" type="java.lang.String" value="0,00"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txGanhosActionPerformed"/>
-          </Events>
-        </Component>
-      </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="lbGanhos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ganhos:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txGanhos">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="columns" type="int" value="10"/>
+        <Property name="horizontalAlignment" type="int" value="11"/>
+        <Property name="text" type="java.lang.String" value="0,00"/>
+        <Property name="toolTipText" type="java.lang.String" value="Exibi&#xe7;&#xe3;o dos rendimentos do estacionamento"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txGanhosActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbTolerancia">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Toler&#xe2;ncia:"/>
+        <Property name="toolTipText" type="java.lang.String" value="Perman&#xea;ncia em que n&#xe3;o ser&#xe1; cobrado"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbPeriodoInicial">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Per&#xed;odo inicial:"/>
+        <Property name="toolTipText" type="java.lang.String" value="Per&#xed;odo em que ser&#xe1; cobrado uma vez, passando dele, ser&#xe1; adicionado ao custo o valor do &quot;Per&#xed;odo Adicional&quot;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbPeriodoAdicional">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Per&#xed;odo adicional:"/>
+        <Property name="toolTipText" type="java.lang.String" value="Per&#xed;odo em que ser&#xe1; cobrado adicionalmente"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbValorInicial">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Valor inicial:"/>
+        <Property name="toolTipText" type="java.lang.String" value="Valor cobrado pelo per&#xed;odo inicial"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbValorAdicional">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Valor adicional:"/>
+        <Property name="toolTipText" type="java.lang.String" value="Valor cobrado pelo per&#xed;odo adicional"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="spTolerancia">
+      <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="0" maximum="1440" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Minutos"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="spPeriodoInicial">
+      <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="0" maximum="24" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Horas"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="spPeriodoAdicional">
+      <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="0" maximum="24" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Horas"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txfValorInicial">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="#,##0.##" subtype="-1" type="0"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Valor cobrado pelo per&#xed;odo inicial"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txfValorInicialActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txfValorAdicional">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="#,##0.##" subtype="-1" type="0"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Valor cobrado pelo per&#xed;odo adicional"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

@@ -63,6 +63,16 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pnGanhos = new javax.swing.JPanel();
         lbGanhos = new javax.swing.JLabel();
         txGanhos = new javax.swing.JTextField();
+        lbTolerancia = new javax.swing.JLabel();
+        lbPeriodoInicial = new javax.swing.JLabel();
+        lbPeriodoAdicional = new javax.swing.JLabel();
+        lbValorInicial = new javax.swing.JLabel();
+        lbValorAdicional = new javax.swing.JLabel();
+        spTolerancia = new javax.swing.JSpinner();
+        spPeriodoInicial = new javax.swing.JSpinner();
+        spPeriodoAdicional = new javax.swing.JSpinner();
+        txfValorInicial = new javax.swing.JFormattedTextField();
+        txfValorAdicional = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ParkingControl");
@@ -80,7 +90,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pnEntrada.add(lbEntrada, java.awt.BorderLayout.PAGE_START);
 
         pnDadosEntrada.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 10);
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(1, 10, 10);
         flowLayout1.setAlignOnBaseline(true);
         pnDadosEntrada.setLayout(flowLayout1);
 
@@ -125,7 +135,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pnSaida.add(lbSaida, java.awt.BorderLayout.PAGE_START);
 
         pnDadosSaida.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        java.awt.FlowLayout flowLayout3 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 10);
+        java.awt.FlowLayout flowLayout3 = new java.awt.FlowLayout(1, 10, 10);
         flowLayout3.setAlignOnBaseline(true);
         pnDadosSaida.setLayout(flowLayout3);
 
@@ -152,7 +162,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pnCobranca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         pnCobranca.setLayout(new java.awt.BorderLayout(10, 10));
 
-        btCobrarSaida.setText("Cobrar Saída");
+        btCobrarSaida.setText("Registrar Cobrança");
         btCobrarSaida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCobrarSaidaActionPerformed(evt);
@@ -200,17 +210,52 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pnCobranca.add(pnDadosCobranca, java.awt.BorderLayout.CENTER);
 
         lbGanhos.setText("Ganhos:");
-        pnGanhos.add(lbGanhos);
 
+        txGanhos.setEditable(false);
         txGanhos.setColumns(10);
         txGanhos.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         txGanhos.setText("0,00");
+        txGanhos.setToolTipText("Exibição dos rendimentos do estacionamento");
         txGanhos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txGanhosActionPerformed(evt);
             }
         });
-        pnGanhos.add(txGanhos);
+
+        lbTolerancia.setText("Tolerância:");
+        lbTolerancia.setToolTipText("Permanência em que não será cobrado");
+
+        lbPeriodoInicial.setText("Período inicial:");
+        lbPeriodoInicial.setToolTipText("Período em que será cobrado uma vez, passando dele, será adicionado ao custo o valor do \"Período Adicional\"");
+
+        lbPeriodoAdicional.setText("Período adicional:");
+        lbPeriodoAdicional.setToolTipText("Período em que será cobrado adicionalmente");
+
+        lbValorInicial.setText("Valor inicial:");
+        lbValorInicial.setToolTipText("Valor cobrado pelo período inicial");
+
+        lbValorAdicional.setText("Valor adicional:");
+        lbValorAdicional.setToolTipText("Valor cobrado pelo período adicional");
+
+        spTolerancia.setModel(new javax.swing.SpinnerNumberModel(0, 0, 1440, 1));
+        spTolerancia.setToolTipText("Minutos");
+
+        spPeriodoInicial.setModel(new javax.swing.SpinnerNumberModel(0, 0, 24, 1));
+        spPeriodoInicial.setToolTipText("Horas");
+
+        spPeriodoAdicional.setModel(new javax.swing.SpinnerNumberModel(0, 0, 24, 1));
+        spPeriodoAdicional.setToolTipText("Horas");
+
+        txfValorInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
+        txfValorInicial.setToolTipText("Valor cobrado pelo período inicial");
+        txfValorInicial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfValorInicialActionPerformed(evt);
+            }
+        });
+
+        txfValorAdicional.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
+        txfValorAdicional.setToolTipText("Valor cobrado pelo período adicional");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -218,32 +263,82 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnCobranca, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(lbParkingControl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(pnEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(pnSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(pnCobranca, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(30, 30, 30)
+                                        .addComponent(lbPeriodoInicial)
+                                        .addGap(2, 2, 2)
+                                        .addComponent(spPeriodoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lbValorInicial))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(pnGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(116, 116, 116)
+                                .addComponent(lbParkingControl, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbGanhos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbTolerancia)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(spTolerancia, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbPeriodoAdicional)
+                        .addGap(0, 0, 0)
+                        .addComponent(spPeriodoAdicional, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbValorAdicional)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txfValorInicial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txfValorAdicional, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbParkingControl)
-                    .addComponent(pnGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbParkingControl, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spPeriodoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbPeriodoInicial)
+                    .addComponent(txfValorInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbValorInicial)
+                    .addComponent(txGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbGanhos))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(spTolerancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbPeriodoAdicional)
+                        .addComponent(lbTolerancia))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbValorAdicional)
+                        .addComponent(txfValorAdicional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(spPeriodoAdicional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnCobranca, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnSaida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnEntrada, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnCobranca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -260,6 +355,10 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private void txGanhosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txGanhosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txGanhosActionPerformed
+
+    private void txfValorInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfValorInicialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfValorInicialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -308,6 +407,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lbHoraEntrada;
     private javax.swing.JLabel lbHoraSaida1;
     private javax.swing.JLabel lbParkingControl;
+    private javax.swing.JLabel lbPeriodoAdicional;
+    private javax.swing.JLabel lbPeriodoInicial;
     private javax.swing.JLabel lbPlacaEntrada;
     private javax.swing.JLabel lbPlacaLabel;
     private javax.swing.JLabel lbPlacaRegistrada;
@@ -315,7 +416,10 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lbSaida;
     private javax.swing.JLabel lbSaidaLabel;
     private javax.swing.JLabel lbSaidaRegistrada;
+    private javax.swing.JLabel lbTolerancia;
     private javax.swing.JLabel lbValorACobrar;
+    private javax.swing.JLabel lbValorAdicional;
+    private javax.swing.JLabel lbValorInicial;
     private javax.swing.JLabel lbValorLabel;
     private javax.swing.JPanel pnCobranca;
     private javax.swing.JPanel pnDadosCobranca;
@@ -328,8 +432,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JSpinner spHoraSaida1;
     private javax.swing.JSpinner spMinutoEntrada;
     private javax.swing.JSpinner spMinutoSaida1;
+    private javax.swing.JSpinner spPeriodoAdicional;
+    private javax.swing.JSpinner spPeriodoInicial;
+    private javax.swing.JSpinner spTolerancia;
     private javax.swing.JTextField txGanhos;
     private javax.swing.JTextField txPlacaEntrada;
     private javax.swing.JTextField txPlacaSaida1;
+    private javax.swing.JFormattedTextField txfValorAdicional;
+    private javax.swing.JFormattedTextField txfValorInicial;
     // End of variables declaration//GEN-END:variables
 }

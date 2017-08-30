@@ -47,11 +47,14 @@
                                       <Component id="lbValorInicial" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="pnGanhos" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
                               <Component id="lbParkingControl" min="-2" pref="248" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jFormattedTextField1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -93,6 +96,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="pnGanhos" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="lbParkingControl" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="jFormattedTextField1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -103,7 +107,7 @@
                   <Component id="txGanhos" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lbGanhos" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="spTolerancia" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -194,6 +198,9 @@
                 <Property name="columns" type="int" value="7"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txPlacaEntradaActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lbHoraEntrada">
               <Properties>
@@ -658,6 +665,14 @@
           <Format format="#,##0.##" subtype="-1" type="0"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Valor cobrado pelo per&#xed;odo adicional"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
+      <Properties>
+        <Property name="columns" type="int" value="7"/>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+          <Format format="UUU####" subtype="-1" type="5"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>

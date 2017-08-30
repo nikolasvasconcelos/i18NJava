@@ -73,6 +73,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         spPeriodoAdicional = new javax.swing.JSpinner();
         txfValorInicial = new javax.swing.JFormattedTextField();
         txfValorAdicional = new javax.swing.JFormattedTextField();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ParkingControl");
@@ -90,7 +91,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pnEntrada.add(lbEntrada, java.awt.BorderLayout.PAGE_START);
 
         pnDadosEntrada.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(1, 10, 10);
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 10);
         flowLayout1.setAlignOnBaseline(true);
         pnDadosEntrada.setLayout(flowLayout1);
 
@@ -100,6 +101,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         txPlacaEntrada.setColumns(7);
         txPlacaEntrada.setToolTipText("");
+        txPlacaEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txPlacaEntradaActionPerformed(evt);
+            }
+        });
         pnDadosEntrada.add(txPlacaEntrada);
 
         lbHoraEntrada.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -135,7 +141,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pnSaida.add(lbSaida, java.awt.BorderLayout.PAGE_START);
 
         pnDadosSaida.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        java.awt.FlowLayout flowLayout3 = new java.awt.FlowLayout(1, 10, 10);
+        java.awt.FlowLayout flowLayout3 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 10);
         flowLayout3.setAlignOnBaseline(true);
         pnDadosSaida.setLayout(flowLayout3);
 
@@ -257,6 +263,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         txfValorAdicional.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
         txfValorAdicional.setToolTipText("Valor cobrado pelo período adicional");
 
+        jFormattedTextField1.setColumns(7);
+        try {
+            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUU####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -280,11 +293,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                                         .addGap(2, 2, 2)
                                         .addComponent(spPeriodoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lbValorInicial))))
+                                        .addComponent(lbValorInicial)))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(pnGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(116, 116, 116)
-                                .addComponent(lbParkingControl, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(lbParkingControl, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -314,7 +330,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbParkingControl, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbParkingControl, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(spPeriodoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -323,7 +340,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                     .addComponent(lbValorInicial)
                     .addComponent(txGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbGanhos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(spTolerancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -359,6 +376,10 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private void txfValorInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfValorInicialActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txfValorInicialActionPerformed
+
+    private void txPlacaEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPlacaEntradaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txPlacaEntradaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -399,6 +420,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btCobrarSaida;
     private javax.swing.JButton btRegistraEntrada;
     private javax.swing.JButton btRegistrarSaida1;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel lbCobranca;
     private javax.swing.JLabel lbEntrada;
     private javax.swing.JLabel lbEntradaLabel;

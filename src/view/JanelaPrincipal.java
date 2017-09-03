@@ -29,25 +29,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnEntrada = new javax.swing.JPanel();
-        btRegistraEntrada = new javax.swing.JButton();
-        lbEntrada = new javax.swing.JLabel();
-        pnDadosEntrada = new javax.swing.JPanel();
-        lbPlacaEntrada = new javax.swing.JLabel();
-        txfPlacaEntrada = new javax.swing.JFormattedTextField();
-        lbHoraEntrada = new javax.swing.JLabel();
-        spHoraEntrada = new javax.swing.JSpinner();
-        spMinutoEntrada = new javax.swing.JSpinner();
         lbParkingControl = new javax.swing.JLabel();
-        pnSaida = new javax.swing.JPanel();
-        btRegistrarSaida1 = new javax.swing.JButton();
-        lbSaida = new javax.swing.JLabel();
-        pnDadosSaida = new javax.swing.JPanel();
-        lbPlacaSaida1 = new javax.swing.JLabel();
-        txfPlacaSaida = new javax.swing.JFormattedTextField();
-        lbHoraSaida1 = new javax.swing.JLabel();
-        spHoraSaida1 = new javax.swing.JSpinner();
-        spMinutoSaida1 = new javax.swing.JSpinner();
         pnCobranca = new javax.swing.JPanel();
         btCobrarSaida = new javax.swing.JButton();
         lbCobranca = new javax.swing.JLabel();
@@ -60,6 +42,19 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         lbSaidaRegistrada = new javax.swing.JLabel();
         lbValorLabel = new javax.swing.JLabel();
         lbValorACobrar = new javax.swing.JLabel();
+        pnGanhos = new javax.swing.JPanel();
+        lbGanhos = new javax.swing.JLabel();
+        txGanhos = new javax.swing.JTextField();
+        pnPlacaHorario = new javax.swing.JPanel();
+        lbPlaca = new javax.swing.JLabel();
+        txfPlaca = new javax.swing.JFormattedTextField();
+        lbHora = new javax.swing.JLabel();
+        spHora = new javax.swing.JSpinner();
+        spMinutoSaida1 = new javax.swing.JSpinner();
+        lbMinuto = new javax.swing.JLabel();
+        pnSaida = new javax.swing.JPanel();
+        lbSaida = new javax.swing.JLabel();
+        btRegistrarSaida1 = new javax.swing.JButton();
         pnAtributosCobranca = new javax.swing.JPanel();
         lbPeriodoInicial = new javax.swing.JLabel();
         spPeriodoInicial = new javax.swing.JSpinner();
@@ -71,102 +66,15 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         txfValorInicial = new javax.swing.JFormattedTextField();
         lbValorAdicional = new javax.swing.JLabel();
         txfValorAdicional = new javax.swing.JFormattedTextField();
-        pnGanhos = new javax.swing.JPanel();
-        lbGanhos = new javax.swing.JLabel();
-        txGanhos = new javax.swing.JTextField();
+        pnEntrada = new javax.swing.JPanel();
+        lbEntrada = new javax.swing.JLabel();
+        btRegistraEntrada = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ParkingControl");
 
-        pnEntrada.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnEntrada.setLayout(new java.awt.BorderLayout(10, 10));
-
-        btRegistraEntrada.setText("Registrar Entrada");
-        pnEntrada.add(btRegistraEntrada, java.awt.BorderLayout.PAGE_END);
-
-        lbEntrada.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbEntrada.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbEntrada.setText("ENTRADA");
-        lbEntrada.setToolTipText("");
-        pnEntrada.add(lbEntrada, java.awt.BorderLayout.PAGE_START);
-
-        pnDadosEntrada.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 10);
-        flowLayout1.setAlignOnBaseline(true);
-        pnDadosEntrada.setLayout(flowLayout1);
-
-        lbPlacaEntrada.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lbPlacaEntrada.setText("Placa:");
-        pnDadosEntrada.add(lbPlacaEntrada);
-
-        txfPlacaEntrada.setColumns(7);
-        try {
-            txfPlacaEntrada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUU####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        pnDadosEntrada.add(txfPlacaEntrada);
-
-        lbHoraEntrada.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lbHoraEntrada.setText("Hora");
-        pnDadosEntrada.add(lbHoraEntrada);
-
-        spHoraEntrada.setPreferredSize(new java.awt.Dimension(40, 20));
-        pnDadosEntrada.add(spHoraEntrada);
-
-        spMinutoEntrada.setPreferredSize(new java.awt.Dimension(40, 20));
-        pnDadosEntrada.add(spMinutoEntrada);
-
-        pnEntrada.add(pnDadosEntrada, java.awt.BorderLayout.CENTER);
-
         lbParkingControl.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lbParkingControl.setText("PARKING CONTROL");
-
-        pnSaida.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnSaida.setLayout(new java.awt.BorderLayout(10, 10));
-
-        btRegistrarSaida1.setText("Registrar Saída");
-        btRegistrarSaida1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btRegistrarSaida1ActionPerformed(evt);
-            }
-        });
-        pnSaida.add(btRegistrarSaida1, java.awt.BorderLayout.PAGE_END);
-
-        lbSaida.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbSaida.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbSaida.setText("SAÍDA");
-        lbSaida.setToolTipText("");
-        pnSaida.add(lbSaida, java.awt.BorderLayout.PAGE_START);
-
-        pnDadosSaida.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        java.awt.FlowLayout flowLayout3 = new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 10);
-        flowLayout3.setAlignOnBaseline(true);
-        pnDadosSaida.setLayout(flowLayout3);
-
-        lbPlacaSaida1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lbPlacaSaida1.setText("Placa:");
-        pnDadosSaida.add(lbPlacaSaida1);
-
-        txfPlacaSaida.setColumns(7);
-        try {
-            txfPlacaSaida.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUU####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        pnDadosSaida.add(txfPlacaSaida);
-
-        lbHoraSaida1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lbHoraSaida1.setText("Hora");
-        pnDadosSaida.add(lbHoraSaida1);
-
-        spHoraSaida1.setPreferredSize(new java.awt.Dimension(40, 20));
-        pnDadosSaida.add(spHoraSaida1);
-
-        spMinutoSaida1.setPreferredSize(new java.awt.Dimension(40, 20));
-        pnDadosSaida.add(spMinutoSaida1);
-
-        pnSaida.add(pnDadosSaida, java.awt.BorderLayout.CENTER);
 
         pnCobranca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnCobranca.setLayout(new java.awt.BorderLayout(12, 10));
@@ -185,90 +93,43 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         lbCobranca.setToolTipText("");
         pnCobranca.add(lbCobranca, java.awt.BorderLayout.PAGE_START);
 
-        pnDadosRegistro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnDadosRegistro.setMinimumSize(new java.awt.Dimension(90, 88));
         pnDadosRegistro.setPreferredSize(new java.awt.Dimension(90, 88));
         pnDadosRegistro.setLayout(new java.awt.GridLayout(4, 2, 10, 10));
 
+        lbPlacaLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbPlacaLabel.setText("Placa: ");
         pnDadosRegistro.add(lbPlacaLabel);
 
-        lbPlacaRegistrada.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lbPlacaRegistrada.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbPlacaRegistrada.setText("XXX-XXXX");
         pnDadosRegistro.add(lbPlacaRegistrada);
 
+        lbEntradaLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbEntradaLabel.setText("Entrada:");
         pnDadosRegistro.add(lbEntradaLabel);
 
-        lbEntradaRegistrada.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lbEntradaRegistrada.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbEntradaRegistrada.setText("HH:MM");
         pnDadosRegistro.add(lbEntradaRegistrada);
 
-        lbSaidaLabel.setText("Saída");
+        lbSaidaLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbSaidaLabel.setText("Saída:");
         pnDadosRegistro.add(lbSaidaLabel);
 
-        lbSaidaRegistrada.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lbSaidaRegistrada.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbSaidaRegistrada.setText("HH:MM");
         pnDadosRegistro.add(lbSaidaRegistrada);
 
+        lbValorLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbValorLabel.setText("Valor(R$):");
         pnDadosRegistro.add(lbValorLabel);
 
-        lbValorACobrar.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lbValorACobrar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbValorACobrar.setText("0,00");
         pnDadosRegistro.add(lbValorACobrar);
 
         pnCobranca.add(pnDadosRegistro, java.awt.BorderLayout.CENTER);
-
-        pnAtributosCobranca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnAtributosCobranca.setLayout(new java.awt.GridLayout(5, 2, 5, 5));
-
-        lbPeriodoInicial.setText("Período inicial:");
-        lbPeriodoInicial.setToolTipText("Período em que será cobrado uma vez, passando dele, será adicionado ao custo o valor do \"Período Adicional\"");
-        pnAtributosCobranca.add(lbPeriodoInicial);
-
-        spPeriodoInicial.setModel(new javax.swing.SpinnerNumberModel(0, 0, 24, 1));
-        spPeriodoInicial.setToolTipText("Horas");
-        pnAtributosCobranca.add(spPeriodoInicial);
-
-        lbTolerancia.setText("Tolerância:");
-        lbTolerancia.setToolTipText("Permanência em que não será cobrado");
-        pnAtributosCobranca.add(lbTolerancia);
-
-        spTolerancia.setModel(new javax.swing.SpinnerNumberModel(0, 0, 1440, 1));
-        spTolerancia.setToolTipText("Minutos");
-        pnAtributosCobranca.add(spTolerancia);
-
-        lbPeriodoAdicional.setText("Período adicional:");
-        lbPeriodoAdicional.setToolTipText("Período em que será cobrado adicionalmente");
-        pnAtributosCobranca.add(lbPeriodoAdicional);
-
-        spPeriodoAdicional.setModel(new javax.swing.SpinnerNumberModel(0, 0, 24, 1));
-        spPeriodoAdicional.setToolTipText("Horas");
-        pnAtributosCobranca.add(spPeriodoAdicional);
-
-        lbValorInicial.setText("Valor inicial:");
-        lbValorInicial.setToolTipText("Valor cobrado pelo período inicial");
-        pnAtributosCobranca.add(lbValorInicial);
-
-        txfValorInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
-        txfValorInicial.setToolTipText("Valor cobrado pelo período inicial");
-        txfValorInicial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfValorInicialActionPerformed(evt);
-            }
-        });
-        pnAtributosCobranca.add(txfValorInicial);
-
-        lbValorAdicional.setText("Valor adicional:");
-        lbValorAdicional.setToolTipText("Valor cobrado pelo período adicional");
-        pnAtributosCobranca.add(lbValorAdicional);
-
-        txfValorAdicional.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
-        txfValorAdicional.setToolTipText("Valor cobrado pelo período adicional");
-        pnAtributosCobranca.add(txfValorAdicional);
-
-        pnCobranca.add(pnAtributosCobranca, java.awt.BorderLayout.LINE_START);
 
         lbGanhos.setText("Ganhos:");
 
@@ -283,55 +144,196 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        pnPlacaHorario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lbPlaca.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lbPlaca.setText("Placa");
+
+        txfPlaca.setColumns(7);
+        try {
+            txfPlaca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUU####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        lbHora.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lbHora.setText(" Horas");
+
+        spHora.setPreferredSize(new java.awt.Dimension(40, 20));
+
+        spMinutoSaida1.setPreferredSize(new java.awt.Dimension(40, 20));
+
+        lbMinuto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lbMinuto.setText("Minutos");
+
+        pnSaida.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnSaida.setLayout(new java.awt.BorderLayout(10, 10));
+
+        lbSaida.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbSaida.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbSaida.setText("SAÍDA");
+        lbSaida.setToolTipText("");
+        pnSaida.add(lbSaida, java.awt.BorderLayout.PAGE_START);
+
+        btRegistrarSaida1.setText("Registrar Saída");
+        btRegistrarSaida1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRegistrarSaida1ActionPerformed(evt);
+            }
+        });
+        pnSaida.add(btRegistrarSaida1, java.awt.BorderLayout.PAGE_END);
+
+        pnAtributosCobranca.setLayout(new java.awt.GridLayout(5, 2, 5, 5));
+
+        lbPeriodoInicial.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbPeriodoInicial.setText("Período inicial:");
+        lbPeriodoInicial.setToolTipText("Período em que será cobrado uma vez, passando dele, será adicionado ao custo o valor do \"Período Adicional\"");
+        pnAtributosCobranca.add(lbPeriodoInicial);
+
+        spPeriodoInicial.setModel(new javax.swing.SpinnerNumberModel(0, 0, 24, 1));
+        spPeriodoInicial.setToolTipText("Horas");
+        pnAtributosCobranca.add(spPeriodoInicial);
+
+        lbTolerancia.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbTolerancia.setText("Tolerância:");
+        lbTolerancia.setToolTipText("Permanência em que não será cobrado");
+        pnAtributosCobranca.add(lbTolerancia);
+
+        spTolerancia.setModel(new javax.swing.SpinnerNumberModel(0, 0, 1440, 1));
+        spTolerancia.setToolTipText("Minutos");
+        pnAtributosCobranca.add(spTolerancia);
+
+        lbPeriodoAdicional.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbPeriodoAdicional.setText("Período adicional:");
+        lbPeriodoAdicional.setToolTipText("Período em que será cobrado adicionalmente");
+        pnAtributosCobranca.add(lbPeriodoAdicional);
+
+        spPeriodoAdicional.setModel(new javax.swing.SpinnerNumberModel(0, 0, 24, 1));
+        spPeriodoAdicional.setToolTipText("Horas");
+        pnAtributosCobranca.add(spPeriodoAdicional);
+
+        lbValorInicial.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbValorInicial.setText("Valor inicial:");
+        lbValorInicial.setToolTipText("Valor cobrado pelo período inicial");
+        pnAtributosCobranca.add(lbValorInicial);
+
+        txfValorInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
+        txfValorInicial.setToolTipText("Valor cobrado pelo período inicial");
+        txfValorInicial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfValorInicialActionPerformed(evt);
+            }
+        });
+        pnAtributosCobranca.add(txfValorInicial);
+
+        lbValorAdicional.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbValorAdicional.setText("Valor adicional:");
+        lbValorAdicional.setToolTipText("Valor cobrado pelo período adicional");
+        pnAtributosCobranca.add(lbValorAdicional);
+
+        txfValorAdicional.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
+        txfValorAdicional.setToolTipText("Valor cobrado pelo período adicional");
+        pnAtributosCobranca.add(txfValorAdicional);
+
+        pnSaida.add(pnAtributosCobranca, java.awt.BorderLayout.CENTER);
+
+        pnEntrada.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnEntrada.setLayout(new java.awt.BorderLayout(10, 10));
+
+        lbEntrada.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbEntrada.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbEntrada.setText("ENTRADA");
+        lbEntrada.setToolTipText("");
+        pnEntrada.add(lbEntrada, java.awt.BorderLayout.CENTER);
+
+        btRegistraEntrada.setText("Registrar Entrada");
+        pnEntrada.add(btRegistraEntrada, java.awt.BorderLayout.PAGE_END);
+
+        javax.swing.GroupLayout pnPlacaHorarioLayout = new javax.swing.GroupLayout(pnPlacaHorario);
+        pnPlacaHorario.setLayout(pnPlacaHorarioLayout);
+        pnPlacaHorarioLayout.setHorizontalGroup(
+            pnPlacaHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnPlacaHorarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnPlacaHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnPlacaHorarioLayout.createSequentialGroup()
+                        .addGap(0, 32, Short.MAX_VALUE)
+                        .addGroup(pnPlacaHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbPlaca))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnPlacaHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnPlacaHorarioLayout.createSequentialGroup()
+                                .addComponent(spHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))
+                            .addGroup(pnPlacaHorarioLayout.createSequentialGroup()
+                                .addComponent(lbHora)
+                                .addGap(24, 24, 24)))
+                        .addGroup(pnPlacaHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(spMinutoSaida1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbMinuto))
+                        .addGap(33, 33, 33))
+                    .addComponent(pnSaida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnPlacaHorarioLayout.setVerticalGroup(
+            pnPlacaHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnPlacaHorarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnPlacaHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbPlaca)
+                    .addComponent(lbMinuto)
+                    .addComponent(lbHora))
+                .addGap(1, 1, 1)
+                .addGroup(pnPlacaHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spMinutoSaida1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(pnEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbGanhos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(pnEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(65, 65, 65)
-                                .addComponent(pnSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(76, 76, 76))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(114, 114, 114)
                         .addComponent(lbParkingControl, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
-                .addComponent(pnCobranca, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                        .addGap(75, 75, 75)
+                        .addComponent(lbGanhos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pnPlacaHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(pnCobranca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pnGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lbParkingControl, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addComponent(lbParkingControl, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbGanhos))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pnSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnCobranca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addComponent(pnGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pnPlacaHorario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnCobranca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -397,15 +399,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lbEntradaLabel;
     private javax.swing.JLabel lbEntradaRegistrada;
     private javax.swing.JLabel lbGanhos;
-    private javax.swing.JLabel lbHoraEntrada;
-    private javax.swing.JLabel lbHoraSaida1;
+    private javax.swing.JLabel lbHora;
+    private javax.swing.JLabel lbMinuto;
     private javax.swing.JLabel lbParkingControl;
     private javax.swing.JLabel lbPeriodoAdicional;
     private javax.swing.JLabel lbPeriodoInicial;
-    private javax.swing.JLabel lbPlacaEntrada;
+    private javax.swing.JLabel lbPlaca;
     private javax.swing.JLabel lbPlacaLabel;
     private javax.swing.JLabel lbPlacaRegistrada;
-    private javax.swing.JLabel lbPlacaSaida1;
     private javax.swing.JLabel lbSaida;
     private javax.swing.JLabel lbSaidaLabel;
     private javax.swing.JLabel lbSaidaRegistrada;
@@ -416,22 +417,18 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lbValorLabel;
     private javax.swing.JPanel pnAtributosCobranca;
     private javax.swing.JPanel pnCobranca;
-    private javax.swing.JPanel pnDadosEntrada;
     private javax.swing.JPanel pnDadosRegistro;
-    private javax.swing.JPanel pnDadosSaida;
     private javax.swing.JPanel pnEntrada;
     private javax.swing.JPanel pnGanhos;
+    private javax.swing.JPanel pnPlacaHorario;
     private javax.swing.JPanel pnSaida;
-    private javax.swing.JSpinner spHoraEntrada;
-    private javax.swing.JSpinner spHoraSaida1;
-    private javax.swing.JSpinner spMinutoEntrada;
+    private javax.swing.JSpinner spHora;
     private javax.swing.JSpinner spMinutoSaida1;
     private javax.swing.JSpinner spPeriodoAdicional;
     private javax.swing.JSpinner spPeriodoInicial;
     private javax.swing.JSpinner spTolerancia;
     private javax.swing.JTextField txGanhos;
-    private javax.swing.JFormattedTextField txfPlacaEntrada;
-    private javax.swing.JFormattedTextField txfPlacaSaida;
+    private javax.swing.JFormattedTextField txfPlaca;
     private javax.swing.JFormattedTextField txfValorAdicional;
     private javax.swing.JFormattedTextField txfValorInicial;
     // End of variables declaration//GEN-END:variables

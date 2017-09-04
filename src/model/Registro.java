@@ -10,24 +10,15 @@ package model;
  * @author Rodrigo
  */
 public class Registro {
-    private String placa;
     private int horaEntrada;
     private int minutoEntrada;
     
     public Registro(){
         
     }
-    public Registro(String placa, int horaEntrada, int minutoEntrada){
-        this.placa = placa;
+    public Registro(int horaEntrada, int minutoEntrada){
         this.horaEntrada = horaEntrada;
         this.minutoEntrada = minutoEntrada;
-    }
-
-    /**
-     * @return the placa
-     */
-    public String getPlaca() {
-        return placa;
     }
 
     /**
@@ -42,13 +33,6 @@ public class Registro {
      */
     public int getMinutoEntrada() {
         return minutoEntrada;
-    }
-
-    /**
-     * @param placa the placa to set
-     */
-    public void setPlaca(String placa) {
-        this.placa = placa;
     }
 
     /**

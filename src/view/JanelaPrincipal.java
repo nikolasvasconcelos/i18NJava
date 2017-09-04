@@ -1,5 +1,8 @@
 package view;
 
+import controller.ControleArmazenamento;
+import javax.swing.JButton;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,6 +21,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
      */
     public JanelaPrincipal() {
         initComponents();
+        btRegistrarCobranca.setEnabled(false);
     }
 
     /**
@@ -31,7 +35,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         lbParkingControl = new javax.swing.JLabel();
         pnCobranca = new javax.swing.JPanel();
-        btCobrarSaida = new javax.swing.JButton();
+        btRegistrarCobranca = new javax.swing.JButton();
         lbCobranca = new javax.swing.JLabel();
         pnDadosRegistro = new javax.swing.JPanel();
         lbPlacaLabel = new javax.swing.JLabel();
@@ -50,11 +54,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         txfPlaca = new javax.swing.JFormattedTextField();
         lbHora = new javax.swing.JLabel();
         spHora = new javax.swing.JSpinner();
-        spMinutoSaida1 = new javax.swing.JSpinner();
+        spMinuto = new javax.swing.JSpinner();
         lbMinuto = new javax.swing.JLabel();
         pnSaida = new javax.swing.JPanel();
         lbSaida = new javax.swing.JLabel();
-        btRegistrarSaida1 = new javax.swing.JButton();
+        btRegistrarSaida = new javax.swing.JButton();
         pnAtributosCobranca = new javax.swing.JPanel();
         lbPeriodoInicial = new javax.swing.JLabel();
         spPeriodoInicial = new javax.swing.JSpinner();
@@ -68,7 +72,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         txfValorAdicional = new javax.swing.JFormattedTextField();
         pnEntrada = new javax.swing.JPanel();
         lbEntrada = new javax.swing.JLabel();
-        btRegistraEntrada = new javax.swing.JButton();
+        btRegistrarEntrada = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ParkingControl");
@@ -79,13 +83,18 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pnCobranca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnCobranca.setLayout(new java.awt.BorderLayout(12, 10));
 
-        btCobrarSaida.setText("Registrar Cobrança");
-        btCobrarSaida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCobrarSaidaActionPerformed(evt);
+        btRegistrarCobranca.setText("Registrar Cobrança");
+        btRegistrarCobranca.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btRegistrarCobrancaMouseClicked(evt);
             }
         });
-        pnCobranca.add(btCobrarSaida, java.awt.BorderLayout.PAGE_END);
+        btRegistrarCobranca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRegistrarCobrancaActionPerformed(evt);
+            }
+        });
+        pnCobranca.add(btRegistrarCobranca, java.awt.BorderLayout.PAGE_END);
 
         lbCobranca.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbCobranca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -159,9 +168,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         lbHora.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbHora.setText(" Horas");
 
+        spHora.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
         spHora.setPreferredSize(new java.awt.Dimension(40, 20));
 
-        spMinutoSaida1.setPreferredSize(new java.awt.Dimension(40, 20));
+        spMinuto.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
+        spMinuto.setPreferredSize(new java.awt.Dimension(40, 20));
 
         lbMinuto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbMinuto.setText("Minutos");
@@ -175,13 +186,18 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         lbSaida.setToolTipText("");
         pnSaida.add(lbSaida, java.awt.BorderLayout.PAGE_START);
 
-        btRegistrarSaida1.setText("Registrar Saída");
-        btRegistrarSaida1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btRegistrarSaida1ActionPerformed(evt);
+        btRegistrarSaida.setText("Registrar Saída");
+        btRegistrarSaida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btRegistrarSaidaMouseClicked(evt);
             }
         });
-        pnSaida.add(btRegistrarSaida1, java.awt.BorderLayout.PAGE_END);
+        btRegistrarSaida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRegistrarSaidaActionPerformed(evt);
+            }
+        });
+        pnSaida.add(btRegistrarSaida, java.awt.BorderLayout.PAGE_END);
 
         pnAtributosCobranca.setLayout(new java.awt.GridLayout(5, 2, 5, 5));
 
@@ -217,7 +233,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         lbValorInicial.setToolTipText("Valor cobrado pelo período inicial");
         pnAtributosCobranca.add(lbValorInicial);
 
-        txfValorInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
+        txfValorInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
         txfValorInicial.setToolTipText("Valor cobrado pelo período inicial");
         txfValorInicial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,7 +247,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         lbValorAdicional.setToolTipText("Valor cobrado pelo período adicional");
         pnAtributosCobranca.add(lbValorAdicional);
 
-        txfValorAdicional.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
+        txfValorAdicional.setColumns(5);
+        txfValorAdicional.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
         txfValorAdicional.setToolTipText("Valor cobrado pelo período adicional");
         pnAtributosCobranca.add(txfValorAdicional);
 
@@ -246,8 +263,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         lbEntrada.setToolTipText("");
         pnEntrada.add(lbEntrada, java.awt.BorderLayout.CENTER);
 
-        btRegistraEntrada.setText("Registrar Entrada");
-        pnEntrada.add(btRegistraEntrada, java.awt.BorderLayout.PAGE_END);
+        btRegistrarEntrada.setText("Registrar Entrada");
+        btRegistrarEntrada.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btRegistrarEntradaMouseClicked(evt);
+            }
+        });
+        pnEntrada.add(btRegistrarEntrada, java.awt.BorderLayout.PAGE_END);
 
         javax.swing.GroupLayout pnPlacaHorarioLayout = new javax.swing.GroupLayout(pnPlacaHorario);
         pnPlacaHorario.setLayout(pnPlacaHorarioLayout);
@@ -270,7 +292,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                                 .addComponent(lbHora)
                                 .addGap(24, 24, 24)))
                         .addGroup(pnPlacaHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(spMinutoSaida1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbMinuto))
                         .addGap(33, 33, 33))
                     .addComponent(pnSaida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -289,7 +311,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addGroup(pnPlacaHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spMinutoSaida1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(pnEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -315,8 +337,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(pnCobranca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,13 +360,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btRegistrarSaida1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarSaida1ActionPerformed
+    private void btRegistrarSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarSaidaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btRegistrarSaida1ActionPerformed
+    }//GEN-LAST:event_btRegistrarSaidaActionPerformed
 
-    private void btCobrarSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCobrarSaidaActionPerformed
+    private void btRegistrarCobrancaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarCobrancaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btCobrarSaidaActionPerformed
+    }//GEN-LAST:event_btRegistrarCobrancaActionPerformed
 
     private void txGanhosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txGanhosActionPerformed
         // TODO add your handling code here:
@@ -354,6 +375,52 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private void txfValorInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfValorInicialActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txfValorInicialActionPerformed
+
+    private void btRegistrarEntradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btRegistrarEntradaMouseClicked
+        javax.swing.JButton bt = (JButton)evt.getSource();
+        if (!bt.isEnabled()) {
+            return;
+        }        
+
+        //controller.ControleArmazenamento.RegistrarEntrada(txfPlaca.getText(), (Integer) spHora.getValue(), (Integer) spMinuto.getValue());
+        System.out.println((Integer) spHora.getValue());
+        System.out.println("TESTE");
+    }//GEN-LAST:event_btRegistrarEntradaMouseClicked
+
+    private void btRegistrarSaidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btRegistrarSaidaMouseClicked
+        javax.swing.JButton bt = (JButton)evt.getSource();
+        if (!bt.isEnabled()) {
+            return;
+        }         
+
+        // TODO add your handling code here:
+        //controller.ControleArmazenamento.RegistrarSaida(txfPlaca.getText(), (Integer) spHora.getValue(), (Integer) spMinuto.getValue(), (Integer) spPeriodoInicial.getValue(), (Integer) spPeriodoAdicional.getValue(), Double.parseDouble(txfValorInicial.getText()), Double.parseDouble(txfValorAdicional.getText()), (Integer) spTolerancia.getValue());
+        System.out.println(txfValorAdicional.getText());
+                    //TODO: FAZER NA VIEW EM SEQUENCIA!!!
+        //preencher as 4 variaveis na View (Placa, Entrada, Saida, Valor"cobranca")
+        //desabilitar os 2 botoes (Entrada / Saida)
+        //ativar o botão cobrança
+        btRegistrarCobranca.setEnabled(true);
+        btRegistrarEntrada.setEnabled(false);
+        btRegistrarSaida.setEnabled(false);
+    }//GEN-LAST:event_btRegistrarSaidaMouseClicked
+
+    private void btRegistrarCobrancaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btRegistrarCobrancaMouseClicked
+        javax.swing.JButton bt = (JButton)evt.getSource();
+        if (!bt.isEnabled()) {
+            return;
+        } 
+
+        // TODO add your handling code here:
+        controller.ControleArmazenamento.RegistrarCobranca(txfPlaca.getText());
+                    //TODO: FAZER NA VIEW EM SEQUENCIA:
+        //limpar os 4 campos da cobrança
+        //habilitar os 2 botoes (Entrada / Saida)
+        //desativar o botão cobrança
+        btRegistrarCobranca.setEnabled(false);
+        btRegistrarEntrada.setEnabled(true);
+        btRegistrarSaida.setEnabled(true);
+    }//GEN-LAST:event_btRegistrarCobrancaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -391,9 +458,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btCobrarSaida;
-    private javax.swing.JButton btRegistraEntrada;
-    private javax.swing.JButton btRegistrarSaida1;
+    private javax.swing.JButton btRegistrarCobranca;
+    private javax.swing.JButton btRegistrarEntrada;
+    private javax.swing.JButton btRegistrarSaida;
     private javax.swing.JLabel lbCobranca;
     private javax.swing.JLabel lbEntrada;
     private javax.swing.JLabel lbEntradaLabel;
@@ -423,7 +490,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel pnPlacaHorario;
     private javax.swing.JPanel pnSaida;
     private javax.swing.JSpinner spHora;
-    private javax.swing.JSpinner spMinutoSaida1;
+    private javax.swing.JSpinner spMinuto;
     private javax.swing.JSpinner spPeriodoAdicional;
     private javax.swing.JSpinner spPeriodoInicial;
     private javax.swing.JSpinner spTolerancia;

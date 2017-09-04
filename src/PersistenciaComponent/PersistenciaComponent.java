@@ -20,17 +20,21 @@ import java.io.File;
   public class PersistenciaComponent {
    
     // serialização: gravando o objetos no arquivo binário "nomeArq"
-    public void gravarArquivoBinario(ArrayList<Object> lista, String nomeArq) {
+
+    /**
+     *
+     * @param lista
+     * @param nomeArq
+     */
+    public static void gravarArquivoBinario(ArrayList<Object> lista, String nomeArq) {
         File arq = new File(nomeArq);
         if(arq.exists()){
             try {
-            arq.delete();
-            arq.createNewFile();
-
-            ObjectOutputStream objOutput = new ObjectOutputStream(new FileOutputStream(arq));
-            objOutput.writeObject(lista);
-            
-            objOutput.close();
+                arq.delete();
+                arq.createNewFile();
+                try (ObjectOutputStream objOutput = new ObjectOutputStream(new FileOutputStream(arq))) {
+                    objOutput.writeObject(lista);
+                }
             } 
             catch(IOException erro) {
                 System.out.printf("Erro: %s", erro.getMessage());
@@ -39,33 +43,41 @@ import java.io.File;
     }
    
     // desserialização: recuperando os objetos gravados no arquivo binário "nomeArq"
-    public ArrayList<Object> lerArquivoBinario(String nomeArq) {
+
+    /**
+     *
+     * @param nomeArq
+     * @return
+     */
+    public static ArrayList<Object> lerArquivoBinario(String nomeArq) {
       ArrayList<Object> lista = new ArrayList();
       try {
         File arq = new File(nomeArq);
         if (arq.exists()) {
-           ObjectInputStream objInput = new ObjectInputStream(new FileInputStream(arq));
-           lista = (ArrayList<Object>)objInput.readObject();
-           objInput.close();
+            try (ObjectInputStream objInput = new ObjectInputStream(new FileInputStream(arq))) {
+                lista = (ArrayList<Object>)objInput.readObject();
+            }
         }
         else{
            lista = null;
            System.out.println("Não encontrado!");
         }
-      } catch(IOException erro1) {
-          System.out.printf("Erro: %s", erro1.getMessage());
-      } catch(ClassNotFoundException erro2) {
-          System.out.printf("Erro: %s", erro2.getMessage());
+      } catch(IOException | ClassNotFoundException erro) {
+          System.out.printf("Erro: %s", erro.getMessage());
       }
    
       return(lista);
     }
     
     // exclusão: excluindo o arquivo binário "nomeArq"
-    public void deleteArquivo(String nomeArq){
-        File arq = new File (nomeArq);
-        this.lerArquivoBinario(nomeArq);
-        if (arq.exists()){
+
+    /**
+     *
+     * @param nomeArq
+     */
+    public static void deleteArquivo(String nomeArq){
+        File arq = new File(nomeArq);
+        if(arq.exists()){
             arq.delete();
         }
     }

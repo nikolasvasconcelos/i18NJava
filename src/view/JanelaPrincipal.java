@@ -1,7 +1,10 @@
 package view;
 
-import controller.ControleArmazenamento;
+import controller.ControllerParkingControl;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,7 +15,7 @@ import javax.swing.JButton;
 
 /**
  *
- * @author Rodrigo
+ * @author Fabio
  */
 public class JanelaPrincipal extends javax.swing.JFrame {
 
@@ -47,8 +50,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         lbValorLabel = new javax.swing.JLabel();
         lbValorACobrar = new javax.swing.JLabel();
         pnGanhos = new javax.swing.JPanel();
-        lbGanhos = new javax.swing.JLabel();
-        txGanhos = new javax.swing.JTextField();
         pnPlacaHorario = new javax.swing.JPanel();
         lbPlaca = new javax.swing.JLabel();
         txfPlaca = new javax.swing.JFormattedTextField();
@@ -67,9 +68,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         lbPeriodoAdicional = new javax.swing.JLabel();
         spPeriodoAdicional = new javax.swing.JSpinner();
         lbValorInicial = new javax.swing.JLabel();
-        txfValorInicial = new javax.swing.JFormattedTextField();
+        txValorInicial = new java.awt.TextField();
         lbValorAdicional = new javax.swing.JLabel();
-        txfValorAdicional = new javax.swing.JFormattedTextField();
+        txValorAdicional = new java.awt.TextField();
         pnEntrada = new javax.swing.JPanel();
         lbEntrada = new javax.swing.JLabel();
         btRegistrarEntrada = new javax.swing.JButton();
@@ -84,11 +85,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pnCobranca.setLayout(new java.awt.BorderLayout(12, 10));
 
         btRegistrarCobranca.setText("Registrar Cobrança");
-        btRegistrarCobranca.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btRegistrarCobrancaMouseClicked(evt);
-            }
-        });
         btRegistrarCobranca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRegistrarCobrancaActionPerformed(evt);
@@ -140,19 +136,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         pnCobranca.add(pnDadosRegistro, java.awt.BorderLayout.CENTER);
 
-        lbGanhos.setText("Ganhos:");
-
-        txGanhos.setEditable(false);
-        txGanhos.setColumns(10);
-        txGanhos.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        txGanhos.setText("0,00");
-        txGanhos.setToolTipText("Exibição dos rendimentos do estacionamento");
-        txGanhos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txGanhosActionPerformed(evt);
-            }
-        });
-
         pnPlacaHorario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbPlaca.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -187,11 +170,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pnSaida.add(lbSaida, java.awt.BorderLayout.PAGE_START);
 
         btRegistrarSaida.setText("Registrar Saída");
-        btRegistrarSaida.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btRegistrarSaidaMouseClicked(evt);
-            }
-        });
         btRegistrarSaida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRegistrarSaidaActionPerformed(evt);
@@ -206,7 +184,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         lbPeriodoInicial.setToolTipText("Período em que será cobrado uma vez, passando dele, será adicionado ao custo o valor do \"Período Adicional\"");
         pnAtributosCobranca.add(lbPeriodoInicial);
 
-        spPeriodoInicial.setModel(new javax.swing.SpinnerNumberModel(0, 0, 24, 1));
+        spPeriodoInicial.setModel(new javax.swing.SpinnerNumberModel(2, 0, 24, 1));
         spPeriodoInicial.setToolTipText("Horas");
         pnAtributosCobranca.add(spPeriodoInicial);
 
@@ -215,7 +193,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         lbTolerancia.setToolTipText("Permanência em que não será cobrado");
         pnAtributosCobranca.add(lbTolerancia);
 
-        spTolerancia.setModel(new javax.swing.SpinnerNumberModel(0, 0, 1440, 1));
+        spTolerancia.setModel(new javax.swing.SpinnerNumberModel(15, 0, 1440, 1));
         spTolerancia.setToolTipText("Minutos");
         pnAtributosCobranca.add(spTolerancia);
 
@@ -224,7 +202,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         lbPeriodoAdicional.setToolTipText("Período em que será cobrado adicionalmente");
         pnAtributosCobranca.add(lbPeriodoAdicional);
 
-        spPeriodoAdicional.setModel(new javax.swing.SpinnerNumberModel(0, 0, 24, 1));
+        spPeriodoAdicional.setModel(new javax.swing.SpinnerNumberModel(1, 0, 24, 1));
         spPeriodoAdicional.setToolTipText("Horas");
         pnAtributosCobranca.add(spPeriodoAdicional);
 
@@ -233,24 +211,27 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         lbValorInicial.setToolTipText("Valor cobrado pelo período inicial");
         pnAtributosCobranca.add(lbValorInicial);
 
-        txfValorInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
-        txfValorInicial.setToolTipText("Valor cobrado pelo período inicial");
-        txfValorInicial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfValorInicialActionPerformed(evt);
-            }
-        });
-        pnAtributosCobranca.add(txfValorInicial);
+        txValorInicial.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txValorInicial.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        txValorInicial.setMinimumSize(new java.awt.Dimension(35, 25));
+        txValorInicial.setPreferredSize(new java.awt.Dimension(35, 25));
+        txValorInicial.setText("10,00");
+        pnAtributosCobranca.add(txValorInicial);
+        txValorInicial.getAccessibleContext().setAccessibleName("valor inicial:");
+        txValorInicial.getAccessibleContext().setAccessibleDescription("Valor cobrado pelo período inicial do estacionamento");
 
         lbValorAdicional.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbValorAdicional.setText("Valor adicional:");
         lbValorAdicional.setToolTipText("Valor cobrado pelo período adicional");
         pnAtributosCobranca.add(lbValorAdicional);
 
-        txfValorAdicional.setColumns(5);
-        txfValorAdicional.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
-        txfValorAdicional.setToolTipText("Valor cobrado pelo período adicional");
-        pnAtributosCobranca.add(txfValorAdicional);
+        txValorAdicional.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        txValorAdicional.setMinimumSize(new java.awt.Dimension(29, 30));
+        txValorAdicional.setPreferredSize(new java.awt.Dimension(29, 30));
+        txValorAdicional.setText("7,00");
+        pnAtributosCobranca.add(txValorAdicional);
+        txValorAdicional.getAccessibleContext().setAccessibleName("valor adicional:");
+        txValorAdicional.getAccessibleContext().setAccessibleDescription("Valor cobrado pelo período adicional");
 
         pnSaida.add(pnAtributosCobranca, java.awt.BorderLayout.CENTER);
 
@@ -264,9 +245,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pnEntrada.add(lbEntrada, java.awt.BorderLayout.CENTER);
 
         btRegistrarEntrada.setText("Registrar Entrada");
-        btRegistrarEntrada.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btRegistrarEntradaMouseClicked(evt);
+        btRegistrarEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRegistrarEntradaActionPerformed(evt);
             }
         });
         pnEntrada.add(btRegistrarEntrada, java.awt.BorderLayout.PAGE_END);
@@ -279,7 +260,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnPlacaHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnPlacaHorarioLayout.createSequentialGroup()
-                        .addGap(0, 32, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(pnPlacaHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbPlaca))
@@ -315,8 +296,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(pnEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -325,17 +306,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbParkingControl, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75)
-                        .addComponent(lbGanhos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnPlacaHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(pnCobranca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(pnCobranca, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lbParkingControl, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -345,117 +323,78 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbParkingControl, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbGanhos))
-                        .addComponent(pnGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(pnGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnPlacaHorario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnCobranca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pnCobranca, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 24, Short.MAX_VALUE))
+                    .addComponent(pnPlacaHorario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btRegistrarSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarSaidaActionPerformed
-        // TODO add your handling code here:
+    String placa = (String)txfPlaca.getValue();
+    if (placa == null){
+        JOptionPane.showMessageDialog(new JFrame(), "Informe a placa", "Erro!",JOptionPane.ERROR_MESSAGE);
+    } else {
+        String resultado = controller.ControllerParkingControl.RegistrarSaida(placa, (Integer) spHora.getValue(), (Integer) spMinuto.getValue(), (Integer) spPeriodoInicial.getValue(), (Integer) spPeriodoAdicional.getValue(), Double.parseDouble(txValorInicial.getText().replace(",", ".")), Double.parseDouble(txValorAdicional.getText().replace(",", ".")), (Integer) spTolerancia.getValue());
+        if (resultado.equals("false1")){
+            JOptionPane.showMessageDialog(new JFrame(), "Placa inexistente no estacionamento", "Erro!",JOptionPane.ERROR_MESSAGE);
+        } else if (resultado.equals("false2")){
+            JOptionPane.showMessageDialog(new JFrame(), "Registro de hora de saída incorreto", "Erro!",JOptionPane.ERROR_MESSAGE);
+        } else {
+            String[] cobrancas = resultado.split(";");
+            lbPlacaRegistrada.setText(placa);
+            lbEntradaRegistrada.setText(String.valueOf(cobrancas[0]));
+            lbSaidaRegistrada.setText(String.valueOf(cobrancas[1]));
+            lbValorACobrar.setText(String.valueOf(cobrancas[2]));
+            lbPlacaRegistrada.repaint();
+            lbEntradaRegistrada.repaint();
+            lbSaidaRegistrada.repaint();
+            lbValorACobrar.repaint();
+            btRegistrarCobranca.setEnabled(true);
+            btRegistrarEntrada.setEnabled(false);
+            btRegistrarSaida.setEnabled(false);
+            JOptionPane.showMessageDialog(new JFrame(), "Registrado a saída. Verifique ao lado os dados e o valor da cobrança", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    
     }//GEN-LAST:event_btRegistrarSaidaActionPerformed
 
     private void btRegistrarCobrancaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarCobrancaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btRegistrarCobrancaActionPerformed
-
-    private void txGanhosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txGanhosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txGanhosActionPerformed
-
-    private void txfValorInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfValorInicialActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txfValorInicialActionPerformed
-
-    private void btRegistrarEntradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btRegistrarEntradaMouseClicked
-        javax.swing.JButton bt = (JButton)evt.getSource();
-        if (!bt.isEnabled()) {
-            return;
-        }        
-
-        //controller.ControleArmazenamento.RegistrarEntrada(txfPlaca.getText(), (Integer) spHora.getValue(), (Integer) spMinuto.getValue());
-        System.out.println((Integer) spHora.getValue());
-        System.out.println("TESTE");
-    }//GEN-LAST:event_btRegistrarEntradaMouseClicked
-
-    private void btRegistrarSaidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btRegistrarSaidaMouseClicked
-        javax.swing.JButton bt = (JButton)evt.getSource();
-        if (!bt.isEnabled()) {
-            return;
-        }         
-
-        // TODO add your handling code here:
-        //controller.ControleArmazenamento.RegistrarSaida(txfPlaca.getText(), (Integer) spHora.getValue(), (Integer) spMinuto.getValue(), (Integer) spPeriodoInicial.getValue(), (Integer) spPeriodoAdicional.getValue(), Double.parseDouble(txfValorInicial.getText()), Double.parseDouble(txfValorAdicional.getText()), (Integer) spTolerancia.getValue());
-        System.out.println(txfValorAdicional.getText());
-                    //TODO: FAZER NA VIEW EM SEQUENCIA!!!
-        //preencher as 4 variaveis na View (Placa, Entrada, Saida, Valor"cobranca")
-        //desabilitar os 2 botoes (Entrada / Saida)
-        //ativar o botão cobrança
-        btRegistrarCobranca.setEnabled(true);
-        btRegistrarEntrada.setEnabled(false);
-        btRegistrarSaida.setEnabled(false);
-    }//GEN-LAST:event_btRegistrarSaidaMouseClicked
-
-    private void btRegistrarCobrancaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btRegistrarCobrancaMouseClicked
-        javax.swing.JButton bt = (JButton)evt.getSource();
-        if (!bt.isEnabled()) {
-            return;
-        } 
-
-        // TODO add your handling code here:
-        controller.ControleArmazenamento.RegistrarCobranca(txfPlaca.getText());
-                    //TODO: FAZER NA VIEW EM SEQUENCIA:
-        //limpar os 4 campos da cobrança
-        //habilitar os 2 botoes (Entrada / Saida)
-        //desativar o botão cobrança
+        controller.ControllerParkingControl.RegistrarCobranca(lbPlacaRegistrada.getText().replace("-", ""));
+        lbPlacaRegistrada.setText("XXX-XXXX");
+        lbEntradaRegistrada.setText("HH:MM");
+        lbSaidaRegistrada.setText("HH:MM");
+        lbValorACobrar.setText("0,00");
+        lbPlacaRegistrada.repaint();
+        lbEntradaRegistrada.repaint();
+        lbSaidaRegistrada.repaint();
+        lbValorACobrar.repaint();
         btRegistrarCobranca.setEnabled(false);
         btRegistrarEntrada.setEnabled(true);
         btRegistrarSaida.setEnabled(true);
-    }//GEN-LAST:event_btRegistrarCobrancaMouseClicked
+        JOptionPane.showMessageDialog(new JFrame(), "Cobrança realizado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btRegistrarCobrancaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    private void btRegistrarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarEntradaActionPerformed
+        String placa = (String)txfPlaca.getValue();
+        if (placa == null){
+            JOptionPane.showMessageDialog(new JFrame(), "Informe a placa", "Erro!",JOptionPane.ERROR_MESSAGE);
+        } else {
+            Integer valorHora = (Integer)spHora.getValue();
+            Integer valorMinutos = (Integer)spMinuto.getValue();
+            if(controller.ControllerParkingControl.RegistrarEntrada(placa, valorHora, valorMinutos)) {
+                JOptionPane.showMessageDialog(new JFrame(), "Entrada registrado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(new JFrame(), "Placa existente no estacionamento", "Erro!",JOptionPane.ERROR_MESSAGE);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JanelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JanelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JanelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JanelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JanelaPrincipal().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_btRegistrarEntradaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btRegistrarCobranca;
@@ -465,7 +404,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lbEntrada;
     private javax.swing.JLabel lbEntradaLabel;
     private javax.swing.JLabel lbEntradaRegistrada;
-    private javax.swing.JLabel lbGanhos;
     private javax.swing.JLabel lbHora;
     private javax.swing.JLabel lbMinuto;
     private javax.swing.JLabel lbParkingControl;
@@ -494,9 +432,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JSpinner spPeriodoAdicional;
     private javax.swing.JSpinner spPeriodoInicial;
     private javax.swing.JSpinner spTolerancia;
-    private javax.swing.JTextField txGanhos;
+    private java.awt.TextField txValorAdicional;
+    private java.awt.TextField txValorInicial;
     private javax.swing.JFormattedTextField txfPlaca;
-    private javax.swing.JFormattedTextField txfValorAdicional;
-    private javax.swing.JFormattedTextField txfValorInicial;
     // End of variables declaration//GEN-END:variables
 }

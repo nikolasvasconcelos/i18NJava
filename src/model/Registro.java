@@ -5,11 +5,13 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
- * @author Rodrigo
+ * @author Fabio
  */
-public class Registro {
+public class Registro implements Serializable {
     private int horaEntrada;
     private int minutoEntrada;
     

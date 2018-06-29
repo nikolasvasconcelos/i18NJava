@@ -7,7 +7,7 @@ package CobrancaComponent;
 
 /**
  *
- * @authors Rodrigo, Fabio
+ * @author Fabio
  */
 public class CobrancaComponent {
       
@@ -30,17 +30,22 @@ public class CobrancaComponent {
         int difHora = horaSaida - horaEntrada;
         int difMinuto = minutoSaida - minutoEntrada;
         double valor = 0;
+
+        if (difHora < 0 || (difHora <= 0 && difMinuto < 0) ){
+            return -1;
+        }
         
-        if(difHora <=0 && difMinuto <= tolerancia){// menor que 30 minuto
+        if( ((difHora*60) + difMinuto) <= tolerancia){
             multiplicador = 0;
         }
-        else if(difHora <= periodoInicial && difMinuto <= 0){ //tempo <= 2 horas
+        else if(((difHora*60)+difMinuto) <= (periodoInicial*60)){
             return valorInicial;
         }
         else{
             difHora = difHora - periodoInicial; 
             valor = valorInicial;
-            multiplicador = Math.round((( Math.round(difHora + (difMinuto/60)) ) / periodoAdicional));
+            multiplicador = Math.round((( Math.round( difHora + (difMinuto/60)) ) / periodoAdicional));
+            System.out.println(multiplicador);
         }   
         return valor + (multiplicador*valorAdicional);
     }

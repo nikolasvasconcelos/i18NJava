@@ -5,9 +5,11 @@
  */
 package CobrancaComponent;
 
+import java.util.ResourceBundle;
+
 /**
  *
- * @author Fabio
+ * @author FabioDelaRoca
  */
 public class CobrancaComponent {
       
@@ -49,4 +51,5 @@ public class CobrancaComponent {
         }   
         return valor + (multiplicador*valorAdicional);
     }
+	
 }

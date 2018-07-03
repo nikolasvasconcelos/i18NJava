@@ -9,15 +9,17 @@ import java.io.Serializable;
 
 /**
  *
- * @author Fabio
+ * @author FabioDelaRoca
  */
 public class Registro implements Serializable {
+
     private int horaEntrada;
     private int minutoEntrada;
     
     public Registro(){
         
     }
+	
     public Registro(int horaEntrada, int minutoEntrada){
         this.horaEntrada = horaEntrada;
         this.minutoEntrada = minutoEntrada;
@@ -50,4 +52,5 @@ public class Registro implements Serializable {
     public void setMinutoEntrada(int minutoEntrada) {
         this.minutoEntrada = minutoEntrada;
     }
+	
 }

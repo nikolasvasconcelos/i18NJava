@@ -1,23 +1,30 @@
 package view;
-
-import controller.ControllerParkingControl;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import controller.ControllerParkingControl;
+import i18N.Local;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+
 
 
 /**
  *
- * @author Fabio
+ * @author FabioDelaRoca
  */
 public class JanelaPrincipal extends javax.swing.JFrame {
+    String lingua = "pt";
+    String pais = "BR";
+    Local local = new Local(lingua, pais);
+    private ResourceBundle textos = local.getBundle();
 
     /**
      * Creates new form JanelaPrincipal
@@ -74,17 +81,20 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pnEntrada = new javax.swing.JPanel();
         lbEntrada = new javax.swing.JLabel();
         btRegistrarEntrada = new javax.swing.JButton();
+        btIdiomaEng = new javax.swing.JButton();
+        btIdiomaPtBr = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("ParkingControl");
+        setTitle(textos.getString("PARKINGCONTROL")); // NOI18N
 
         lbParkingControl.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lbParkingControl.setText("PARKING CONTROL");
+        lbParkingControl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbParkingControl.setText(textos.getString("PARKING CONTROL")); // NOI18N
 
         pnCobranca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnCobranca.setLayout(new java.awt.BorderLayout(12, 10));
 
-        btRegistrarCobranca.setText("Registrar Cobrança");
+        btRegistrarCobranca.setText(textos.getString("REGISTRAR COBRANÇA")); // NOI18N
         btRegistrarCobranca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRegistrarCobrancaActionPerformed(evt);
@@ -94,7 +104,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         lbCobranca.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbCobranca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbCobranca.setText("COBRANÇA");
+        lbCobranca.setText(textos.getString("COBRANÇA")); // NOI18N
         lbCobranca.setToolTipText("");
         pnCobranca.add(lbCobranca, java.awt.BorderLayout.PAGE_START);
 
@@ -103,7 +113,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pnDadosRegistro.setLayout(new java.awt.GridLayout(4, 2, 10, 10));
 
         lbPlacaLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbPlacaLabel.setText("Placa: ");
+        lbPlacaLabel.setText(textos.getString("PLACA: ")); // NOI18N
         pnDadosRegistro.add(lbPlacaLabel);
 
         lbPlacaRegistrada.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -111,7 +121,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pnDadosRegistro.add(lbPlacaRegistrada);
 
         lbEntradaLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbEntradaLabel.setText("Entrada:");
+        lbEntradaLabel.setText(textos.getString("ENTRADA:")); // NOI18N
         pnDadosRegistro.add(lbEntradaLabel);
 
         lbEntradaRegistrada.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -119,7 +129,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pnDadosRegistro.add(lbEntradaRegistrada);
 
         lbSaidaLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbSaidaLabel.setText("Saída:");
+        lbSaidaLabel.setText(textos.getString("SAÍDA:")); // NOI18N
         pnDadosRegistro.add(lbSaidaLabel);
 
         lbSaidaRegistrada.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -127,11 +137,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pnDadosRegistro.add(lbSaidaRegistrada);
 
         lbValorLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbValorLabel.setText("Valor(R$):");
+        lbValorLabel.setText(textos.getString("VALOR(R$):")); // NOI18N
         pnDadosRegistro.add(lbValorLabel);
 
         lbValorACobrar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbValorACobrar.setText("0,00");
+        lbValorACobrar.setText(textos.getString("0,00")); // NOI18N
         pnDadosRegistro.add(lbValorACobrar);
 
         pnCobranca.add(pnDadosRegistro, java.awt.BorderLayout.CENTER);
@@ -139,7 +149,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pnPlacaHorario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbPlaca.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lbPlaca.setText("Placa");
+        lbPlaca.setText(textos.getString("PLACA")); // NOI18N
 
         txfPlaca.setColumns(7);
         try {
@@ -149,7 +159,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         }
 
         lbHora.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lbHora.setText(" Horas");
+        lbHora.setText(textos.getString(" HORAS")); // NOI18N
 
         spHora.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
         spHora.setPreferredSize(new java.awt.Dimension(40, 20));
@@ -158,18 +168,18 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         spMinuto.setPreferredSize(new java.awt.Dimension(40, 20));
 
         lbMinuto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lbMinuto.setText("Minutos");
+        lbMinuto.setText(textos.getString("MINUTOS")); // NOI18N
 
         pnSaida.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnSaida.setLayout(new java.awt.BorderLayout(10, 10));
 
         lbSaida.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbSaida.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbSaida.setText("SAÍDA");
+        lbSaida.setText(textos.getString("SAÍDA")); // NOI18N
         lbSaida.setToolTipText("");
         pnSaida.add(lbSaida, java.awt.BorderLayout.PAGE_START);
 
-        btRegistrarSaida.setText("Registrar Saída");
+        btRegistrarSaida.setText(textos.getString("REGISTRAR SAÍDA")); // NOI18N
         btRegistrarSaida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRegistrarSaidaActionPerformed(evt);
@@ -180,58 +190,56 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         pnAtributosCobranca.setLayout(new java.awt.GridLayout(5, 2, 5, 5));
 
         lbPeriodoInicial.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbPeriodoInicial.setText("Período inicial:");
+        lbPeriodoInicial.setText(textos.getString("PERÍODO INICIAL:")); // NOI18N
         lbPeriodoInicial.setToolTipText("Período em que será cobrado uma vez, passando dele, será adicionado ao custo o valor do \"Período Adicional\"");
         pnAtributosCobranca.add(lbPeriodoInicial);
 
         spPeriodoInicial.setModel(new javax.swing.SpinnerNumberModel(2, 0, 24, 1));
-        spPeriodoInicial.setToolTipText("Horas");
+        spPeriodoInicial.setToolTipText(textos.getString("HORAS")); // NOI18N
         pnAtributosCobranca.add(spPeriodoInicial);
 
         lbTolerancia.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbTolerancia.setText("Tolerância:");
-        lbTolerancia.setToolTipText("Permanência em que não será cobrado");
+        lbTolerancia.setText(textos.getString("TOLERÂNCIA:")); // NOI18N
+        lbTolerancia.setToolTipText(textos.getString("PERMANÊNCIA EM QUE NÃO SERÁ COBRADO")); // NOI18N
         pnAtributosCobranca.add(lbTolerancia);
 
         spTolerancia.setModel(new javax.swing.SpinnerNumberModel(15, 0, 1440, 1));
-        spTolerancia.setToolTipText("Minutos");
+        spTolerancia.setToolTipText(textos.getString("MINUTOS")); // NOI18N
         pnAtributosCobranca.add(spTolerancia);
 
         lbPeriodoAdicional.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbPeriodoAdicional.setText("Período adicional:");
-        lbPeriodoAdicional.setToolTipText("Período em que será cobrado adicionalmente");
+        lbPeriodoAdicional.setText(textos.getString("PERÍODO ADICIONAL:")); // NOI18N
+        lbPeriodoAdicional.setToolTipText(textos.getString("PERÍODO EM QUE SERÁ COBRADO ADICIONALMENTE")); // NOI18N
         pnAtributosCobranca.add(lbPeriodoAdicional);
 
         spPeriodoAdicional.setModel(new javax.swing.SpinnerNumberModel(1, 0, 24, 1));
-        spPeriodoAdicional.setToolTipText("Horas");
+        spPeriodoAdicional.setToolTipText(textos.getString("HORAS")); // NOI18N
         pnAtributosCobranca.add(spPeriodoAdicional);
 
         lbValorInicial.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbValorInicial.setText("Valor inicial:");
-        lbValorInicial.setToolTipText("Valor cobrado pelo período inicial");
+        lbValorInicial.setText(textos.getString("VALOR INICIAL:")); // NOI18N
+        lbValorInicial.setToolTipText(textos.getString("VALOR COBRADO PELO PERÍODO INICIAL")); // NOI18N
         pnAtributosCobranca.add(lbValorInicial);
 
         txValorInicial.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txValorInicial.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         txValorInicial.setMinimumSize(new java.awt.Dimension(35, 25));
-        txValorInicial.setPreferredSize(new java.awt.Dimension(35, 25));
-        txValorInicial.setText("10,00");
+        txValorInicial.setText(textos.getString("10,00")); // NOI18N
         pnAtributosCobranca.add(txValorInicial);
-        txValorInicial.getAccessibleContext().setAccessibleName("valor inicial:");
-        txValorInicial.getAccessibleContext().setAccessibleDescription("Valor cobrado pelo período inicial do estacionamento");
+        txValorInicial.getAccessibleContext().setAccessibleName(textos.getString("VALOR INICIAL:")); // NOI18N
+        txValorInicial.getAccessibleContext().setAccessibleDescription(textos.getString("VALOR COBRADO PELO PERÍODO INICIAL DO ESTACIONAMENTO")); // NOI18N
 
         lbValorAdicional.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbValorAdicional.setText("Valor adicional:");
-        lbValorAdicional.setToolTipText("Valor cobrado pelo período adicional");
+        lbValorAdicional.setText(textos.getString("VALOR ADICIONAL:")); // NOI18N
+        lbValorAdicional.setToolTipText(textos.getString("VALOR COBRADO PELO PERÍODO ADICIONAL")); // NOI18N
         pnAtributosCobranca.add(lbValorAdicional);
 
         txValorAdicional.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         txValorAdicional.setMinimumSize(new java.awt.Dimension(29, 30));
-        txValorAdicional.setPreferredSize(new java.awt.Dimension(29, 30));
-        txValorAdicional.setText("7,00");
+        txValorAdicional.setText(textos.getString("7,00")); // NOI18N
         pnAtributosCobranca.add(txValorAdicional);
-        txValorAdicional.getAccessibleContext().setAccessibleName("valor adicional:");
-        txValorAdicional.getAccessibleContext().setAccessibleDescription("Valor cobrado pelo período adicional");
+        txValorAdicional.getAccessibleContext().setAccessibleName(textos.getString("VALOR ADICIONAL:")); // NOI18N
+        txValorAdicional.getAccessibleContext().setAccessibleDescription(textos.getString("VALOR COBRADO PELO PERÍODO ADICIONAL")); // NOI18N
 
         pnSaida.add(pnAtributosCobranca, java.awt.BorderLayout.CENTER);
 
@@ -240,11 +248,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         lbEntrada.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbEntrada.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbEntrada.setText("ENTRADA");
+        lbEntrada.setText(textos.getString("ENTRADA")); // NOI18N
         lbEntrada.setToolTipText("");
         pnEntrada.add(lbEntrada, java.awt.BorderLayout.CENTER);
 
-        btRegistrarEntrada.setText("Registrar Entrada");
+        btRegistrarEntrada.setText(textos.getString("REGISTRAR ENTRADA")); // NOI18N
         btRegistrarEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRegistrarEntradaActionPerformed(evt);
@@ -296,42 +304,72 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(pnEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(pnSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 176, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        btIdiomaEng.setActionCommand("btIdiomaEng");
+        btIdiomaEng.setLabel("ENG");
+        btIdiomaEng.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btIdiomaEngActionPerformed(evt);
+            }
+        });
+
+        btIdiomaPtBr.setText("BR");
+        btIdiomaPtBr.setActionCommand("btIdiomaPtBr");
+        btIdiomaPtBr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btIdiomaPtBrActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(lbParkingControl, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnPlacaHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(pnCobranca, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lbParkingControl, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btIdiomaPtBr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btIdiomaEng, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbParkingControl, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(pnGanhos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lbParkingControl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(btIdiomaPtBr, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btIdiomaEng)))))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnCobranca, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 24, Short.MAX_VALUE))
+                        .addGap(0, 14, Short.MAX_VALUE))
                     .addComponent(pnPlacaHorario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        btIdiomaEng.getAccessibleContext().setAccessibleName("btIdiomaEng");
+        btIdiomaPtBr.getAccessibleContext().setAccessibleName("btIdiomaPtBr");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -339,13 +377,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private void btRegistrarSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarSaidaActionPerformed
     String placa = (String)txfPlaca.getValue();
     if (placa == null){
-        JOptionPane.showMessageDialog(new JFrame(), "Informe a placa", "Erro!",JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(new JFrame(), textos.getString("INFORME A PLACA"), textos.getString("ERRO!"),JOptionPane.ERROR_MESSAGE);
     } else {
-        String resultado = controller.ControllerParkingControl.RegistrarSaida(placa, (Integer) spHora.getValue(), (Integer) spMinuto.getValue(), (Integer) spPeriodoInicial.getValue(), (Integer) spPeriodoAdicional.getValue(), Double.parseDouble(txValorInicial.getText().replace(",", ".")), Double.parseDouble(txValorAdicional.getText().replace(",", ".")), (Integer) spTolerancia.getValue());
+        String resultado = controller.ControllerParkingControl.RegistrarSaida(placa, (Integer) spHora.getValue(), (Integer) spMinuto.getValue(), (Integer) spPeriodoInicial.getValue(), (Integer) spPeriodoAdicional.getValue(), Double.parseDouble(txValorInicial.getText().replace(textos.getString(","), textos.getString("."))), Double.parseDouble(txValorAdicional.getText().replace(textos.getString(","), textos.getString("."))), (Integer) spTolerancia.getValue());
         if (resultado.equals("false1")){
-            JOptionPane.showMessageDialog(new JFrame(), "Placa inexistente no estacionamento", "Erro!",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), textos.getString("PLACA INEXISTENTE NO ESTACIONAMENTO"), textos.getString("ERRO!"),JOptionPane.ERROR_MESSAGE);
         } else if (resultado.equals("false2")){
-            JOptionPane.showMessageDialog(new JFrame(), "Registro de hora de saída incorreto", "Erro!",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), textos.getString("REGISTRO DE HORA DE SAÍDA INCORRETO"), textos.getString("ERRO!"),JOptionPane.ERROR_MESSAGE);
         } else {
             String[] cobrancas = resultado.split(";");
             lbPlacaRegistrada.setText(placa);
@@ -359,10 +397,10 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             btRegistrarCobranca.setEnabled(true);
             btRegistrarEntrada.setEnabled(false);
             btRegistrarSaida.setEnabled(false);
-            JOptionPane.showMessageDialog(new JFrame(), "Registrado a saída. Verifique ao lado os dados e o valor da cobrança", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), textos.getString("REGISTRADO A SAÍDA. VERIFIQUE AO LADO OS DADOS E O VALOR DA COBRANÇA"), textos.getString("SUCESSO"), JOptionPane.INFORMATION_MESSAGE);
         }
     }
-    
+
     }//GEN-LAST:event_btRegistrarSaidaActionPerformed
 
     private void btRegistrarCobrancaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarCobrancaActionPerformed
@@ -370,7 +408,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         lbPlacaRegistrada.setText("XXX-XXXX");
         lbEntradaRegistrada.setText("HH:MM");
         lbSaidaRegistrada.setText("HH:MM");
-        lbValorACobrar.setText("0,00");
+        lbValorACobrar.setText(textos.getString("0,00"));
         lbPlacaRegistrada.repaint();
         lbEntradaRegistrada.repaint();
         lbSaidaRegistrada.repaint();
@@ -378,25 +416,45 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         btRegistrarCobranca.setEnabled(false);
         btRegistrarEntrada.setEnabled(true);
         btRegistrarSaida.setEnabled(true);
-        JOptionPane.showMessageDialog(new JFrame(), "Cobrança realizado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(new JFrame(), textos.getString("COBRANÇA REALIZADO COM SUCESSO"), textos.getString("SUCESSO"), JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btRegistrarCobrancaActionPerformed
 
     private void btRegistrarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarEntradaActionPerformed
         String placa = (String)txfPlaca.getValue();
         if (placa == null){
-            JOptionPane.showMessageDialog(new JFrame(), "Informe a placa", "Erro!",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), textos.getString("INFORME A PLACA"), textos.getString("ERRO!"),JOptionPane.ERROR_MESSAGE);
         } else {
             Integer valorHora = (Integer)spHora.getValue();
             Integer valorMinutos = (Integer)spMinuto.getValue();
             if(controller.ControllerParkingControl.RegistrarEntrada(placa, valorHora, valorMinutos)) {
-                JOptionPane.showMessageDialog(new JFrame(), "Entrada registrado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(new JFrame(), textos.getString("ENTRADA REGISTRADO COM SUCESSO"), textos.getString("SUCESSO"), JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(new JFrame(), "Placa existente no estacionamento", "Erro!",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(new JFrame(), textos.getString("PLACA EXISTENTE NO ESTACIONAMENTO"), textos.getString("ERRO!"),JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_btRegistrarEntradaActionPerformed
 
+    private void btIdiomaEngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIdiomaEngActionPerformed
+        lingua = "en";
+	pais = "US";
+        local.setLocal(lingua, pais);
+        textos = local.getBundle();
+        this.lbSaida.repaint();
+    }//GEN-LAST:event_btIdiomaEngActionPerformed
+
+    private void btIdiomaPtBrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIdiomaPtBrActionPerformed
+        lingua = "pt";
+        pais = "BR";
+        local.setLocal(lingua, pais);
+        textos = local.getBundle();
+        this.initComponents();
+    }//GEN-LAST:event_btIdiomaPtBrActionPerformed
+
+   
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btIdiomaEng;
+    private javax.swing.JButton btIdiomaPtBr;
     private javax.swing.JButton btRegistrarCobranca;
     private javax.swing.JButton btRegistrarEntrada;
     private javax.swing.JButton btRegistrarSaida;

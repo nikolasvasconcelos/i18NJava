@@ -7,13 +7,16 @@ package controller;
 
 import CobrancaComponent.CobrancaComponent;
 import PersistenciaComponent.PersistenciaComponent;
+import java.util.ResourceBundle;
 import model.Registro;
 
 /**
  *
- * @author Fabio
+ * @author FabioDelaRoca
  */
 public  class ControllerParkingControl {
+
+    private static final ResourceBundle en_US = ResourceBundle.getBundle("i18N/en_US");
 
     /**
      *
@@ -69,7 +72,7 @@ public  class ControllerParkingControl {
         if(strMinutoSaida.length() == 1){
             strMinutoSaida = "0"+strMinutoSaida;
         }
-        return strHoraEntrada+":"+strMinutoEntrada+";"+strHoraSaida+":"+strMinutoSaida+";"+String.valueOf(cobranca).replace(".", ",");
+        return strHoraEntrada+":"+strMinutoEntrada+";"+strHoraSaida+":"+strMinutoSaida+";"+String.valueOf(cobranca).replace(en_US.getString("."), en_US.getString(","));
     }
 
     /**

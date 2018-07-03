@@ -7,7 +7,7 @@ package PersistenciaComponent;
 
 /**
  *
- * @author Fabio
+ * @author FabioDelaRoca
  */
 import java.io.File;
 import java.io.IOException;
@@ -15,8 +15,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ResourceBundle;
    
 public class PersistenciaComponent {
+
+    private static final ResourceBundle en_US = ResourceBundle.getBundle("i18N/en_US");
    
     /**
      *
@@ -36,7 +39,7 @@ public class PersistenciaComponent {
                 }
             } 
             catch(IOException erro) {
-                System.out.printf("Erro: %s", erro.getMessage());
+                System.out.printf(en_US.getString("ERRO: %S"), erro.getMessage());
             }
         }
         return true;
@@ -56,10 +59,10 @@ public class PersistenciaComponent {
                 }
             }
             else{
-                System.out.println("PersistenciaComponent: Registro Não Encontrado!");
+                System.out.println(en_US.getString("PERSISTENCIACOMPONENT: REGISTRO NÃO ENCONTRADO!"));
             }
         } catch(IOException | ClassNotFoundException erro) {
-            System.out.printf("PersistenciaComponent Erro: %s", erro.getMessage());
+            System.out.printf(en_US.getString("PERSISTENCIACOMPONENT ERRO: %S"), erro.getMessage());
         }
         return null;
     }
